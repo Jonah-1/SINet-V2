@@ -142,16 +142,16 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--epoch', type=int, default=100, help='epoch number')
     parser.add_argument('--lr', type=float, default=1e-4, help='learning rate')
-    parser.add_argument('--batchsize', type=int, default=36, help='training batch size')
+    parser.add_argument('--batchsize', type=int, default=8, help='training batch size')
     parser.add_argument('--trainsize', type=int, default=352, help='training dataset size')
     parser.add_argument('--clip', type=float, default=0.5, help='gradient clipping margin')
     parser.add_argument('--decay_rate', type=float, default=0.1, help='decay rate of learning rate')
     parser.add_argument('--decay_epoch', type=int, default=50, help='every n epochs decay learning rate')
     parser.add_argument('--load', type=str, default=None, help='train from checkpoints')
     parser.add_argument('--gpu_id', type=str, default='0', help='train use gpu')
-    parser.add_argument('--train_root', type=str, default='./Dataset/TrainValDataset/',
+    parser.add_argument('--train_root', type=str, default='./dataset/train/',
                         help='the training rgb images root')
-    parser.add_argument('--val_root', type=str, default='./Dataset/TestDataset/CAMO/',
+    parser.add_argument('--val_root', type=str, default='./dataset/test/',
                         help='the test rgb images root')
     parser.add_argument('--save_path', type=str,
                         default='./snapshot/SINet_V2/',
@@ -182,12 +182,12 @@ if __name__ == '__main__':
 
     # load data
     print('load data...')
-    train_loader = get_loader(image_root=opt.train_root + 'Imgs/',
+    train_loader = get_loader(image_root=opt.train_root + 'image/',
                               gt_root=opt.train_root + 'GT/',
                               batchsize=opt.batchsize,
                               trainsize=opt.trainsize,
                               num_workers=8)
-    val_loader = test_dataset(image_root=opt.val_root + 'Imgs/',
+    val_loader = test_dataset(image_root=opt.val_root + 'image/',
                               gt_root=opt.val_root + 'GT/',
                               testsize=opt.trainsize)
     total_step = len(train_loader)

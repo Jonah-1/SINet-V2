@@ -31,3 +31,11 @@
 *.out
 *.app
 /snapshot/20201214-Network_Res2Net_GRA_NCD/
+
+# 忽略 dataset/ 下的所有文件，但保留目录和占位文件
+dataset/*
+!dataset/.gitkeep
+
+# 忽略 snapshot/ 下的所有文件，但保留目录和占位文件
+snapshot/*
+!snapshot/.gitkeep
